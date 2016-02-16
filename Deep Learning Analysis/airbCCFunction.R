@@ -28,7 +28,7 @@ Ki = data.frame(k=K)
 
 fit<-neuralnet(response~attribute,
                data=data,
-               hidden=c(10,10),
+               hidden=c(10,10,10),
                threshold = 0.01
 )
 
@@ -37,3 +37,7 @@ pred <- compute(fit,testdata)
 result <- cbind(testdata,pred$net.result,Ki)
 colnames(result) <- c("Attribute", "Prediction", "Actual")
 round(result,4)
+plot(PD$pd,pred$net.result, type="l", col="red", main="Exposure for Credit Card (Prediction)", cex.main = 2.0, cex.lab = 1.5, cex = 1.5, lwd = 3, 
+     xlab = "Probability of Default", ylab = "Capital Requirement (K)")
+plot(PD$pd,Ki$k, type="l", col="red", main="Exposure for Credit Card (Actual)", cex.main = 2.0, cex.lab = 1.5, cex = 1.5, lwd = 3, 
+     xlab = "Probability of Default", ylab = "Capital Requirement (K)")
