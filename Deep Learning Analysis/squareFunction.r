@@ -15,4 +15,5 @@ testdata <- as.matrix(sample(seq(-2,2,length=10),10,replace=FALSE),ncol=1)
 pred <- compute(fit,testdata)
 result <- cbind(testdata,pred$net.result,testdata^2)
 colnames(result) <- c("Attribute", "Prediction", "Actual")
+
 round(result,4)
